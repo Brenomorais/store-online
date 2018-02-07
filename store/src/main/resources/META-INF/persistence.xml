@@ -7,6 +7,7 @@
     <persistence-unit name="casadocodigo-dev" transaction-type="JTA">
         <description>Dev persistence unit</description>
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        
         <!-- java transaction api || JNDI -->
         <jta-data-source>java:jboss/datasources/storeDS</jta-data-source>
         <properties>
