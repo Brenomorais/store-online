@@ -34,16 +34,18 @@ public class AdminLivrosBean {
 	}
 
 	@Transactional
-	public void salvar() {
+	public String salvar() {
+		
 		for(Integer autorId : autoresId) {
 			livro.getAutores().add(new Autor(autorId));
 		}
 		
-		livroDao.salvar(livro);		
-		
-		System.out.println("Livro salvo com sucesso! "+livro+" - Autor: "+autoresId);
+		livroDao.salvar(livro);
 		
 		limparCampos();
+		
+		return "/livros/lista?faces-redirect=true";	
+		
 	}
 
 	public List<Autor> getAutores(){
