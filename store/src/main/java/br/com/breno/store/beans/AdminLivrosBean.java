@@ -1,6 +1,5 @@
 package br.com.breno.store.beans;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -29,21 +28,14 @@ public class AdminLivrosBean {
 	private AutorDao autorDao;
 	
 	@Inject
-	private FacesContext context;
-	
-	private List<Integer> autoresId = new ArrayList<>();	
-	
+	private FacesContext context;	
+		
 	public void limparCampos() {
-		this.livro = new Livro();
-		this.autoresId = new ArrayList<>();
+		this.livro = new Livro();		
 	}
 
 	@Transactional
-	public String salvar() {
-		
-		for(Integer autorId : autoresId) {
-			livro.getAutores().add(new Autor(autorId));
-		}
+	public String salvar() {		
 		
 		livroDao.salvar(livro);
 		
@@ -70,15 +62,5 @@ public class AdminLivrosBean {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-
-	public List<Integer> getAutoresId() {
-		return autoresId;
-	}
-
-	public void setAutoresId(List<Integer> autoresId) {
-		this.autoresId = autoresId;
-	}
-	
-	
 
 }
