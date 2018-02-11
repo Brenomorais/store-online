@@ -31,6 +31,15 @@
 				required="true" id="preco" />		
 			<h:message for="preco"/>
 		</div>
+		
+		<div>
+			<h:outputLabel value="Data de Publicação" />
+			<h:inputText value="#{adminLivrosBean.livro.dataPublicacao.time}" id="dataPublicacao">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:inputText> 
+			<h:message for="dataPublicacao"/>
+		</div>
+		
 		<div>
 			<h:outputLabel value="Autores"/>
 			<h:selectManyListbox value="#{adminLivrosBean.autoresId}"

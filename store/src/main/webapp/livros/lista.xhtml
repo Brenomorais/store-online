@@ -30,6 +30,13 @@
 		</h:column>
 		
 		<h:column>
+			<f:facet name="header">Data Publicação</f:facet>
+			<h:outputText value="#{livro.dataPublicacao.time}">
+				<f:convertDateTime pattern="dd/MM/yyyy"/>
+			</h:outputText>		 
+		</h:column>
+		
+		<h:column>
 			<f:facet name="header">Preço</f:facet>
 		 	#{livro.preco}
 		</h:column>
