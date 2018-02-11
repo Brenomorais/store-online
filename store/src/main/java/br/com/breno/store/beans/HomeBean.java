@@ -1,0 +1,29 @@
+package br.com.breno.store.beans;
+
+import java.util.List;
+
+import javax.enterprise.inject.Model;
+import javax.inject.Inject;
+
+import br.com.breno.store.daos.LivroDao;
+import br.com.breno.store.models.Livro;
+
+@Model
+public class HomeBean {
+	
+	@Inject
+	private LivroDao livroDao;
+	
+	public List<Livro> todosLivros(){
+		return livroDao.listar();
+	}
+	
+	public List<Livro> ultimosLancamentos(){
+		return livroDao.ultimosLancamentos();
+	}
+	
+	public List<Livro> demaisLivros(){
+		return livroDao.demaisLivros();
+	}
+
+}
