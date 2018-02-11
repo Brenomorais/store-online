@@ -16,7 +16,8 @@ target/
 *.log
 .tern-project
 .mtj.tmp/
-*.xml.jsfdia
+.tern-project
+.faces-config.xml.jsfdia
 
 # Package Files #
 *.jar
