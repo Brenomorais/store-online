@@ -50,8 +50,7 @@ public class Livro {
 	@NotNull
 	private List<Autor> autores = new ArrayList<>();
 	
-	private String capaPath;
-	
+	private String capaPath;	
 
 	public Integer getId() {
 		return id;

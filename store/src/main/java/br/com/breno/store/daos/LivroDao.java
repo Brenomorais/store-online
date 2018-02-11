@@ -7,8 +7,10 @@ import javax.persistence.PersistenceContext;
 
 import br.com.breno.store.models.Livro;
 
+//@Stateful usado para resolver lazy sem precisar usar query planeded 
 public class LivroDao {
 	
+	//@PersistenceContext(type=PersistenceContextType.EXTENDED)
 	@PersistenceContext
 	private EntityManager manager;
 	
@@ -35,6 +37,19 @@ public class LivroDao {
 		return manager.createQuery(jpql, Livro.class)
 				.setFirstResult(5)
 				.getResultList();
+	}
+
+	public Livro buscarPorId(Integer id) {
+		
+		//realiza um queru para o livro e query para o autor(s)
+		//return manager.find(Livro.class, id);
+
+		//planed query planejada fetch para evitar lazy 
+		String jpql = "select distinct(l) from Livro l "
+				+ " join fetch l.autores where l.id = :id";					
+		return manager.createQuery(jpql, Livro.class)
+				.setParameter("id",id)				
+				.getSingleResult();
 	}
 
 }
