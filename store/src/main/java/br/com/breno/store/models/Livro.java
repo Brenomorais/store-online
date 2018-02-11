@@ -48,7 +48,9 @@ public class Livro {
 	@ManyToMany
 	@Size(min=1)
 	@NotNull
-	private List<Autor> autores = new ArrayList<>();	
+	private List<Autor> autores = new ArrayList<>();
+	
+	private String capaPath;
 	
 
 	public Integer getId() {
@@ -108,6 +110,12 @@ public class Livro {
 	}
 	public void setDataPublicacao(Calendar dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
+	}
+	public String getCapaPath() {
+		return capaPath;
+	}
+	public void setCapaPath(String capaPath) {
+		this.capaPath = capaPath;
 	}
 	
 }
