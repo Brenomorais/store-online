@@ -7,15 +7,32 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
 <h:head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="style-admin.css" />
 </h:head>	
 
 <h:body>
- 	<div class="container">
-	
 
-	<h:form enctype="multipart/form-data" class="">			
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">House of Code</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><h:link value="List Book" outcome="lista" /></li>
+				<li class="active"><a href="#">Register Book</a></li>
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+	</nav>	
+
+ 	<div class="container">	
+ 	
+ 	<h1>Register of books</h1>
+
+	<h:form enctype="multipart/form-data">			
 		<div class="form-group">
 			<h:outputLabel value="Título" />
 			<h:inputText value="#{adminLivrosBean.livro.titulo}"  class="form-control" 
@@ -73,6 +90,7 @@
 			<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar()}"  
 				class="btn btn-primary"/>
 		</div>
+		
 	</h:form>
 </div>
 </h:body>
