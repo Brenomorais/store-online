@@ -5,43 +5,56 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+<h:head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"/>
+</h:head>	
 
-	<h:form enctype="multipart/form-data">			
-		<div>
+<h:body>
+ 	<div class="container">
+	
+
+	<h:form enctype="multipart/form-data" class="">			
+		<div class="form-group">
 			<h:outputLabel value="Título" />
-			<h:inputText value="#{adminLivrosBean.livro.titulo}" 
-			 	required="true" id="titulo" />
+			<h:inputText value="#{adminLivrosBean.livro.titulo}"  class="form-control" 
+				required="true" id="titulo" />
 			<h:message for="titulo"/>
 		</div>
-		<div>
+		
+		<div class="form-group">
 			<h:outputLabel value="Descrição" />
 			<h:inputTextarea rows="4" cols="20" value="#{adminLivrosBean.livro.descricao}" 
-				required="true" id="descricao"/>
+				 class="form-control" required="true" id="descricao"/>
 			<h:message for="descriacao"/>
 		</div>
-		<div>
+		
+		<div class="form-group">
 			<h:outputLabel value="Número de Páginas" />
-			<h:inputText value="#{adminLivrosBean.livro.numeroPaginas}" 
+			<h:inputText value="#{adminLivrosBean.livro.numeroPaginas}" class="form-control"
 				required="true" id="paginas"/>					
 			<h:message for="paginas"/>
 		</div>
-		<div>
+		
+		<div class="form-group">
 			<h:outputLabel value="Preço" />
-			<h:inputText value="#{adminLivrosBean.livro.preco}" 
+			<h:inputText value="#{adminLivrosBean.livro.preco}" class="form-control"
 				required="true" id="preco" />		
 			<h:message for="preco"/>
 		</div>
 		
-		<div>
+		<div class="form-group">
 			<h:outputLabel value="Data de Publicação" />
-			<h:inputText value="#{adminLivrosBean.livro.dataPublicacao}" id="dataPublicacao"/>			
+			<h:inputText value="#{adminLivrosBean.livro.dataPublicacao}" class="form-control" 
+				id="dataPublicacao"/>			
 			<h:message for="dataPublicacao"/>
 		</div>
 		
-		<div>
+		<div class="form-group">
 			<h:outputLabel value="Autores"/>
 			<h:selectManyListbox value="#{adminLivrosBean.livro.autores}"
-				converter="autorConverter" id="autores">
+				converter="autorConverter" id="autores"  class="form-control">
 				<f:selectItems value="#{adminLivrosBean.autores}"
 				    var="autor"
 					itemValue="#{autor}" itemLabel="#{autor.nome}"/>				
@@ -49,13 +62,18 @@
 			<h:message for="autores"/>
 		</div>
 		
-		<div>
+		<div class="form-group">
 			<h:outputLabel value="Imagem capa do Livro" />
-			<h:inputFile value="#{adminLivrosBean.capaLivro}" id="capaLivro"/>
+			<h:inputFile value="#{adminLivrosBean.capaLivro}"  class="form-control"
+				 id="capaLivro"/>
 			<h:message for="capaLivro"/>
 		</div>
 		
-		<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar()}" />
+		<div class="form-group">
+			<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar()}"  
+				class="btn btn-primary"/>
+		</div>
 	</h:form>
-
+</div>
+</h:body>
 </html>
