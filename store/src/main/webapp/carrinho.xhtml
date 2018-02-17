@@ -14,7 +14,7 @@
 	<link rel="shortcut icon" href="#{request.contextPath}/resources/imagens/favicon.ico" type="image/ico" />
 	<link href="https://plus.google.com/108540024862647200608" rel="publisher" />
 
-	<title>#{livroDetalheBean.livro.titulo} - Casa do Código</title>
+	<title>#{livroDetalheBean.livro.titulo} House Code</title>
 
 <script type="text/javascript" async="" src="#{request.contextPath}/resources/js/pixel.js"></script>
 <script type="text/javascript" async="" src="#{request.contextPath}/resources/js/ec.js"></script>
@@ -274,7 +274,7 @@
 		</thead>
 		<tbody>
 		
-			<ui:repeat var="carrinhoItem" value="#{carrinhoComprasBean.itens}">			
+			<ui:repeat var="carrinhoItem" value="#{carrinhoCompras.itens}">			
 				<tr>
 				<td class="formularioDoCarrinho-item">
 					<a href="#{request.contextPath}/livro-detalhe.xhtml?id=#{carrinhoItem.livro.id}">
@@ -293,7 +293,7 @@
 						   value="#{carrinhoItem.quantidade}" />
 				</td>
 				<td class="formularioDoCarrinho-item formularioDoCarrinho-item-precoTotal" 
-					title="Preço unitário: R$ #{carrinhoItem.livro.preco}">#{carrinhoItem.livro.preco}</td>
+					title="Preço unitário: R$ #{carrinhoItem.livro.preco}">R$ #{carrinhoCompras.getTotal(carrinhoItem)}</td>
 				<td class="formularioDoCarrinho-item">
 					<a href="https://www.casadocodigo.com.br/cart/change?id=18404155847&amp;quantity=0">
 						<img class="formularioDoCarrinho-item-remover-imagem"  src="#{request.contextPath}/resources/imagens/trash.png" alt="X" title="Remover" />
@@ -312,7 +312,7 @@
 					<button class="formularioDoCarrinho-atualizar" type="submit" name="update">Atualizar</button>
 				</td>
 				<td class="formularioDoCarrinho-rodape-item">
-					R$29,90
+					R$#{carrinhoCompras.total}
 				</td>
 				<td></td>
 			</tr>

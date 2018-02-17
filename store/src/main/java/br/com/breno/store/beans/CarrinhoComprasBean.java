@@ -1,7 +1,5 @@
 package br.com.breno.store.beans;
 
-import java.util.List;
-
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
@@ -12,23 +10,20 @@ import br.com.breno.store.models.Livro;
 
 @Model
 public class CarrinhoComprasBean {
-	
-	@Inject
-	private LivroDao livroDao;
-	
-	@Inject
-	private CarrinhoCompras carrinho;
 
-	public String adicionar(Integer id) {
-		Livro livro = livroDao.buscarPorId(id);	
-		CarrinhoItem item = new CarrinhoItem(livro);
-		carrinho.adicionar(item);
-		
-		return "carrinho?faces-redirect=true";
-	}
-	
-	public List<CarrinhoItem> getItens(){
-		return carrinho.getItens();
-	}
-	
+    @Inject
+    private LivroDao livroDao;
+
+    @Inject
+    private CarrinhoCompras carrinho;
+
+    public String add(Integer id) {
+        Livro livro = livroDao.buscarPorId(id);
+        CarrinhoItem item = new CarrinhoItem(livro);
+        carrinho.adicionar(item);
+        
+        System.out.println(">>1-comprasbean");
+        return "carrinho?faces-redirect=true";
+    }   
+    
 }
