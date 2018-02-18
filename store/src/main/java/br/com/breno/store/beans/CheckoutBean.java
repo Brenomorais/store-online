@@ -17,8 +17,7 @@ public class CheckoutBean {
 
 	@Transactional
 	public String finalizar() {
-		carrinho.finalizar(usuario);
-		limpar();
+		carrinho.finalizar(usuario);		
 		return "index?faces-redirect=true";
 	}
 
@@ -30,16 +29,12 @@ public class CheckoutBean {
 		this.usuario = usuario;
 	}
 
-	public void limpar() {
-		this.usuario = new Usuario();
-	}
-
 	public CarrinhoCompras getCarrinho() {
 		return carrinho;
 	}
 
 	public void setCarrinho(CarrinhoCompras carrinho) {
-		this.carrinho = carrinho;
+		this.carrinho = carrinho;		
 	}
 
 }

@@ -14,75 +14,83 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 
 import br.com.breno.store.daos.CompraDao;
+import br.com.breno.store.service.PagamentoGateway;
 
 @Named
 @SessionScoped
 public class CarrinhoCompras implements Serializable {
-	
-	private static final long serialVersionUID = 1L;	
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Inject
 	private CompraDao compraDao;
 	
-	private Set<CarrinhoItem> itens =
-			new HashSet<>();
-	
-	public void adicionar(CarrinhoItem item) {		 
-		itens.add(item);		
+	@Inject
+	private PagamentoGateway pagamentoGateway;
+
+	private Set<CarrinhoItem> itens = new HashSet<>();
+
+	public void adicionar(CarrinhoItem item) {
+		itens.add(item);
 	}
 
-	public List<CarrinhoItem> getItens() {		
+	public List<CarrinhoItem> getItens() {
 		return new ArrayList<CarrinhoItem>(itens);
 	}
-	
+
 	public BigDecimal getTotal() {
-	    BigDecimal total = BigDecimal.ZERO;
+		BigDecimal total = BigDecimal.ZERO;
 
-	    for (CarrinhoItem carrinhoItem : itens) {
-	        total = total.add(carrinhoItem.getLivro().getPreco()
-	                .multiply(new BigDecimal(carrinhoItem.getQuantidade())));
-	    }
-
-	    return total;
+		for (CarrinhoItem carrinhoItem : itens) {
+			total = total
+					.add(carrinhoItem.getLivro().getPreco()
+					.multiply(new BigDecimal(carrinhoItem.getQuantidade())));
+		}
+		return total;
 	}
-	
+
 	public BigDecimal getTotal(CarrinhoItem item) {
-        return item.getLivro().getPreco().multiply(
-                new BigDecimal(item.getQuantidade()));
-    }
-	
+		return item.getLivro().getPreco().multiply(new BigDecimal(item.getQuantidade()));
+	}
+
 	public void remover(CarrinhoItem item) {
 		this.itens.remove(item);
 	}
-	
+
 	public Integer quantidadeTotalCarrinho() {
 		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
 	}
-	
+
 	public void add(CarrinhoItem item) {
 		itens.add(item);
 	}
-		
+
 	public void finalizar(Usuario usuario) {
-	   Compra compra = new Compra();
-	   compra.setUsuario(usuario);
-	   compra.setItens(this.toJson());	   
-	   compraDao.salvar(compra);
-	}
+		Compra compra = new Compra();
+		compra.setUsuario(usuario);
+		compra.setItens(this.toJson());
+		compraDao.salvar(compra);
+		limpaCarrinho();
+		
+		String reponse = pagamentoGateway.pagar(getTotal());
+		System.out.println(reponse);
+	}	
 
 	private String toJson() {
 		JsonArrayBuilder builder = Json.createArrayBuilder();
-	    for (CarrinhoItem item : itens) {
-	        builder.add(Json.createObjectBuilder()
-	                .add("titulo", item.getLivro().getTitulo())
-	                .add("preco", item.getLivro().getPreco())
-	                .add("quantidade", item.getQuantidade())
-	                .add("total", getTotal(item)));
-	    }
-	    String json = builder.build().toString();
-	    System.out.println(json);
-	    
-	    return json;
+		for (CarrinhoItem item : itens) {
+			builder.add(Json.createObjectBuilder().add("titulo", item.getLivro().getTitulo())
+					.add("preco", item.getLivro().getPreco()).add("quantidade", item.getQuantidade())
+					.add("total", getTotal(item)));
+		}
+		String json = builder.build().toString();
+		System.out.println(json);
+
+		return json;
 	}
 	
+	public void limpaCarrinho() {
+		itens.clear();	
+	}
+
 }
