@@ -17,13 +17,16 @@ public class CarrinhoComprasBean {
     @Inject
     private CarrinhoCompras carrinho;
 
-    public String add(Integer id) {
+    public String adicionaItemCarrinho(Integer id) {
         Livro livro = livroDao.buscarPorId(id);
         CarrinhoItem item = new CarrinhoItem(livro);
-        carrinho.adicionar(item);
-        
-        System.out.println(">>1-comprasbean");
+        carrinho.adicionar(item);        
+       
         return "carrinho?faces-redirect=true";
-    }   
+    }  
+    
+    public void removeItemCarrinho(CarrinhoItem item) {
+    	carrinho.remover(item);    	   	
+    }
     
 }

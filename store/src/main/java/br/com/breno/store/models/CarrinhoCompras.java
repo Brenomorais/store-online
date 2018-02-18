@@ -21,8 +21,7 @@ public class CarrinhoCompras implements Serializable {
 			new HashSet<>();
 	
 	public void adicionar(CarrinhoItem item) {		 
-		itens.add(item);
-		System.out.println(">>2 "+item.getLivro().getDescricao());
+		itens.add(item);		
 	}
 
 	public List<CarrinhoItem> getItens() {		
@@ -44,4 +43,13 @@ public class CarrinhoCompras implements Serializable {
         return item.getLivro().getPreco().multiply(
                 new BigDecimal(item.getQuantidade()));
     }
+	
+	public void remover(CarrinhoItem item) {
+		this.itens.remove(item);
+	}
+	
+	public Integer quantidadeTotalCarrinho() {
+		return itens.stream().mapToInt(item -> item.getQuantidade()).sum();
+	}
+	
 }
