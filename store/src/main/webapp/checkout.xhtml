@@ -337,17 +337,20 @@
 			<div class="form-group">
 				<label>Nome</label>
 				<input class="form-control" type="text" autofocus="autofocus" required="true"
-					 placeholder="Nome Completo" jsf:value="#{checkoutBean.usuario.nome}" />
+					 placeholder="Nome Completo" autocomplete="off" 
+					 jsf:value="#{checkoutBean.usuario.nome}" />
 			</div>
 			<div class="form-group">
 				<label>E-mail</label>
-				<input class="form-control" type="email" required="true"
+				<input class="form-control" type="email" 
+					required="true" autocomplete="off" 
 					placeholder="E-mail" jsf:value="#{checkoutBean.usuario.email}" />
 			</div>
 			<div class="form-group">
 				<label>Senha</label> 
 				<input class="form-control" type="password" required="true"
-					placeholder="Senha" jsf:value="#{checkoutBean.usuario.senha}" />
+					placeholder="Senha" autocomplete="off"  
+					jsf:value="#{checkoutBean.usuario.senha}" />
 			</div>
 			<button class="btn btn-primary" jsf:action="#{checkoutBean.finalizar()}" 
 				type="submit">Finalizar Compra</button>
