@@ -57,6 +57,14 @@
 	vertical-align: middle;
 }
 
+.formularioCarrinho-voltar{	
+	padding-top: 1em;
+}
+
+.formularioCarrinho-voltar:hover{
+	color:#f90;	
+}
+
 .formularioDoCarrinho-finalizar {
 	text-align: left;
 	padding-left: .5em;
