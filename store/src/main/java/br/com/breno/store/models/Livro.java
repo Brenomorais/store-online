@@ -18,6 +18,10 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.validator.constraints.Length;
@@ -26,6 +30,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 @Cacheable
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Livro {
 	
 	@Id
@@ -52,6 +57,8 @@ public class Livro {
 	@ManyToMany
 	@Size(min=1)
 	@NotNull
+	@XmlElement(name="autor")
+	@XmlElementWrapper(name="autores")
 	private List<Autor> autores = new ArrayList<>();
 	
 	private String capaPath;	
