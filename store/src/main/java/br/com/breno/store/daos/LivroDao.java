@@ -2,19 +2,20 @@ package br.com.breno.store.daos;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.persistence.Cache;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import org.hibernate.jpa.QueryHints;
 
 import br.com.breno.store.models.Livro;
 
-//@Stateful usado para resolver lazy sem precisar usar query planeded 
+@Stateful  //usado para resolver lazy sem precisar usar query planeded 
 public class LivroDao {
 	
-	//@PersistenceContext(type=PersistenceContextType.EXTENDED)
-	@PersistenceContext
+	@PersistenceContext(type=PersistenceContextType.EXTENDED) //confi da anotaçãp stateful	
 	private EntityManager manager;
 	
 	public void salvar(Livro livro) {
@@ -47,7 +48,7 @@ public class LivroDao {
 
 	public Livro buscarPorId(Integer id) {
 		
-		//realiza um queru para o livro e query para o autor(s)
+		//realiza um query para o livro e query para o autor(s)
 		//return manager.find(Livro.class, id);
 
 		//planed query planejada fetch para evitar lazy 
