@@ -14,7 +14,6 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 
 import br.com.breno.store.daos.CompraDao;
-import br.com.breno.store.service.PagamentoGateway;
 
 @Named
 @SessionScoped
@@ -25,9 +24,6 @@ public class CarrinhoCompras implements Serializable {
 	@Inject
 	private CompraDao compraDao;
 	
-	@Inject
-	private PagamentoGateway pagamentoGateway;
-
 	private Set<CarrinhoItem> itens = new HashSet<>();
 
 	public void adicionar(CarrinhoItem item) {
@@ -65,32 +61,24 @@ public class CarrinhoCompras implements Serializable {
 		itens.add(item);
 	}
 
-	public void finalizar(Usuario usuario) {
-		Compra compra = new Compra();
-		compra.setUsuario(usuario);
+	public void finalizar(Compra compra) {		
 		compra.setItens(this.toJson());
-		compraDao.salvar(compra);
-		limpaCarrinho();
-		
-		String reponse = pagamentoGateway.pagar(getTotal());
-		System.out.println(reponse);
+		compra.setTotal(getTotal());
+		compraDao.salvar(compra);		
+		itens.clear();
 	}	
 
 	private String toJson() {
 		JsonArrayBuilder builder = Json.createArrayBuilder();
 		for (CarrinhoItem item : itens) {
-			builder.add(Json.createObjectBuilder().add("titulo", item.getLivro().getTitulo())
-					.add("preco", item.getLivro().getPreco()).add("quantidade", item.getQuantidade())
+			builder.add(Json.createObjectBuilder()
+					.add("titulo", item.getLivro().getTitulo())
+					.add("preco", item.getLivro().getPreco())
+					.add("quantidade", item.getQuantidade())
 					.add("total", getTotal(item)));
-		}
-		String json = builder.build().toString();
-		System.out.println(json);
-
-		return json;
-	}
+		}		
 	
-	public void limpaCarrinho() {
-		itens.clear();	
-	}
+		return builder.build().toString();
+	}	
 
 }
