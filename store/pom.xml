@@ -5,6 +5,7 @@
 	<groupId>br.com.brenomorais.store</groupId>
 	<artifactId>store</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+
 	<build>
 		<finalName>store</finalName>
 		<plugins>
@@ -17,12 +18,15 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 	<packaging>war</packaging>
+	
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -40,6 +44,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
@@ -60,6 +65,31 @@
 		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>jsr250-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Draft-16</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.transaction</groupId>
+			<artifactId>javax.transaction-api</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.3.10.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.10.Final</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

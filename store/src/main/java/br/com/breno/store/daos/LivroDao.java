@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.hibernate.jpa.QueryHints;
+
 import br.com.breno.store.models.Livro;
 
 //@Stateful usado para resolver lazy sem precisar usar query planeded 
@@ -29,6 +31,7 @@ public class LivroDao {
 		String jpql = "select l from Livro l order by l.dataPublicacao desc";
 		return manager.createQuery(jpql, Livro.class)
 				.setMaxResults(5)
+				.setHint(QueryHints.HINT_CACHEABLE, true)
 				.getResultList();
 	}
 
@@ -36,6 +39,7 @@ public class LivroDao {
 		String jpql = "select l from Livro l order by l.dataPublicacao desc";
 		return manager.createQuery(jpql, Livro.class)
 				.setFirstResult(5)
+				.setHint(QueryHints.HINT_CACHEABLE, true)
 				.getResultList();
 	}
 
