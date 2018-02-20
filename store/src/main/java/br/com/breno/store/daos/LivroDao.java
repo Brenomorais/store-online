@@ -2,6 +2,7 @@ package br.com.breno.store.daos;
 
 import java.util.List;
 
+import javax.persistence.Cache;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -28,6 +29,7 @@ public class LivroDao {
 	}
 
 	public List<Livro> ultimosLancamentos() {
+		
 		String jpql = "select l from Livro l order by l.dataPublicacao desc";
 		return manager.createQuery(jpql, Livro.class)
 				.setMaxResults(5)
@@ -56,4 +58,10 @@ public class LivroDao {
 				.getSingleResult();
 	}
 
+	
+	public void limpaCahce() {
+		Cache cache = manager.getEntityManagerFactory().getCache();
+		cache.evict(Livro.class, 1l); //limpa o cache do livro id 1
+		cache.evictAll(); //limpa o cahce de todos livros		
+	}
 }
