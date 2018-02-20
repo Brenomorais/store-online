@@ -18,11 +18,11 @@ public class HomeBean {
 		return livroDao.listar();
 	}
 	
-	public List<Livro> ultimosLancamentos(){
+	public List<Livro> ultimosLancamentos(){		
 		return livroDao.ultimosLancamentos();
 	}
 	
-	public List<Livro> demaisLivros(){
+	public List<Livro> demaisLivros(){		
 		return livroDao.demaisLivros();
 	}
 
