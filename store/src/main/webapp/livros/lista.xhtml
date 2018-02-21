@@ -31,6 +31,10 @@
 	<h:messages/>
 	
 	<h1>List of books</h1>
+	
+	<div>
+		Bem vindo, #{request.getUserPrincipal().getName()}
+	</div>
 
 	<h:dataTable var="livro" value="#{adminListaLivrosBean.livros}"
 		class="table table-bordered table-striped table-hover">
