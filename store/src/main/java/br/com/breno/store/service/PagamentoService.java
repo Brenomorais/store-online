@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import br.com.breno.store.daos.CompraDao;
+import br.com.breno.store.infra.MailSender;
 import br.com.breno.store.models.Compra;
 
 
@@ -32,6 +33,9 @@ public class PagamentoService {
 
 	@Inject
 	private PagamentoGateway pagamentoGateway;
+
+	@Inject
+	private MailSender mailSender;
 
 	private static ExecutorService executor = Executors.newFixedThreadPool(50);
 
@@ -51,6 +55,14 @@ public class PagamentoService {
 						.queryParam("msg", "Compra realizada com sucesso").build();
 
 				Response response = Response.seeOther(responseUri).build();
+				
+				String messageBody = "Sua compra foi realizada com sucesso,"
+								+ "com número de pedido : " + compra.getUuid();
+				
+				mailSender.send("email@gmail.com", 
+							compra.getUsuario().getEmail(),"Nova compra na House Code",
+							messageBody);
+				
 				ar.resume(response);
 			} catch (Exception e) {
 				ar.resume(new WebApplicationException(e));
