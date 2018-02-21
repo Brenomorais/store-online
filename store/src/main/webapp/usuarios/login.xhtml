@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<title>House Code - Login</title>
+
+	<link rel="stylesheet"	href="#{request.contextPath}/resources/css/bootstrap.min.css" />
+	<link rel="stylesheet"	href="#{request.contextPath}/resources/css/login.css"/>
+
+</head>
+<body>
+<div class="container">	
+	<form action="${request.getContextPath()}/j_security_check" method="post" class="form-signin">
+		<h2 class="form-signin-heading">House Code</h2>
+		
+		
+		<label for="inputEmail" class="sr-only">Login:</label>
+		<input name="j_username" type="text" class="form-control"/>
+		
+		<label for="inputEmail" class="sr-only">Senha:</label>
+		<input name="j_password" type="password" class="form-control"/>
+		
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+	</form>	
+</div>
+</body>
+</html>
