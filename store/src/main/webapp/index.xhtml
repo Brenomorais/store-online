@@ -38,7 +38,7 @@
 	href="#{request.contextPath}/resources/css/style.css"></link>
 <!-- endinject -->
 
-<link rel="canonical" href="https://www.casadocodigo.com.br/"></link>
+<link rel="canonical" href="#{request.getContextPath()}/index.xhtml"></link>
 <link rel="stylesheet" href="#{request.contextPath}/resources/css/l"
 	media="all"></link>
 <script src="#{request.contextPath}/resources/js/settings.js" async=""
@@ -177,22 +177,22 @@
 					class="colecoesDaCDC">
 
 					<li class="colecoesDaCDC-colecaoItem"><a
-						href="https://www.casadocodigo.com.br/collections/todos"
+						href="#{request.getContextPath()}/index.xhtml"
 						class="colecoesDaCDC-colecaoLink"> Todos </a></li>
 					<li class="colecoesDaCDC-colecaoItem"><a
-						href="https://www.casadocodigo.com.br/collections/livros-de-front-e-design"
+						href="#{request.getContextPath()}/index.xhtml"
 						class="colecoesDaCDC-colecaoLink"> Front e Design </a></li>
 					<li class="colecoesDaCDC-colecaoItem"><a
-						href="https://www.casadocodigo.com.br/collections/livros-de-games"
+						href="#{request.getContextPath()}/index.xhtml"
 						class="colecoesDaCDC-colecaoLink"> Games </a></li>
 					<li class="colecoesDaCDC-colecaoItem"><a
-						href="https://www.casadocodigo.com.br/collections/livros-de-gestao"
+						href="#{request.getContextPath()}/index.xhtml"
 						class="colecoesDaCDC-colecaoLink"> Gestão </a></li>
 					<li class="colecoesDaCDC-colecaoItem"><a
-						href="https://www.casadocodigo.com.br/collections/livros-de-java"
+						href="#{request.getContextPath()}/index.xhtml"
 						class="colecoesDaCDC-colecaoLink"> Java </a></li>
 					<li class="colecoesDaCDC-colecaoItem"><a
-						href="https://www.casadocodigo.com.br/collections/livros-de-mobile"
+						href="#{request.getContextPath()}/index.xhtml"
 						class="colecoesDaCDC-colecaoLink"> Mobile </a></li>
 						
 					<c:if test="#{currentUser.hasRole('ADMIN')}"> 
@@ -298,8 +298,8 @@
 
 
 	<div class="buscaDoRodape container" role="presentation">
-		<form role="search" aria-labelledby="rotuloBuscaDoRodape"
-			action="https://www.casadocodigo.com.br/search" method="GET"
+		<form role="search" aria-labelledby="rotuloBuscaDoRodape" 
+			action="#{request.getContextPath()}/index.xhtml" method="GET"
 			class="buscaDoRodape-formulario">
 			<label id="rotuloBuscaRodape" class="buscaDoRodape-rotuloEscondido"
 				for="campoBuscaRodape">Busque por autor, título, conteúdo...</label>
@@ -323,7 +323,7 @@
 		<div class="container" role="presentation">
 			<div class="rodape-conteudo" role="presentation">
 				<section class="rodape-secao">
-					<a class="rodape-logo" href="https://www.casadocodigo.com.br/#"
+					<a class="rodape-logo" href="#{request.getContextPath()}/index.xhtml"
 						title="Voltar ao topo da página"> <img
 						src="#{request.contextPath}/resources/imagens/logo-footer.svg"
 						alt="altLogoFooter" />
@@ -379,9 +379,7 @@
 
 					</ul>
 				</section>
-				<!--
-
-		 -->
+		
 				<section class="rodape-secao rodape-secaoOutros">
 					<h3 class="rodape-titulo">Receba as novidades, promoções e
 						lançamentos</h3>
@@ -413,13 +411,13 @@
 					<ul>
 						<li class="rodape-item rodape-redeSocial"><a
 							class="compartilhar-facebook"
-							href="http://www.facebook.com/casadocodigo" rel="nofollow"
-							title="Casa do Código no Facebook" target="_blank">/CasaDoCodigo</a>
+							href="#" rel="nofollow"
+							title="House code no Facebook" target="_blank"></a>
 						</li>
 						<li class="rodape-item rodape-redeSocial"><a
 							class="compartilhar-twitter"
-							href="http://www.twitter.com/casadocodigo" rel="nofollow"
-							title="Casa do Código no Twitter" target="_blank">@casadocodigo</a>
+							href="#" rel="nofollow"
+							title="House code no Twitter" target="_blank"></a>
 						</li>
 					</ul>
 				</section>
@@ -430,35 +428,45 @@
 	<footer class="caelumGroup">
 		<div class="caelumGroup-footer" role="presentation">
 			<p>
-				<a class="caelumGroup-title" href="http://www.caelum.com.br/grupo">
+				<a class="caelumGroup-title" href="#{request.getContextPath()}/index.xhtml">
 					<img src="#{request.contextPath}/resources/imagens/group-logo.svg"
 					alt="Grupo Caelum" />
 				</a>
 			</p>
 
 			<ul>
-				<li><a href="http://www.caelum.com.br/"> <img alt="Caelum"
+				<li><a href="#{request.getContextPath()}/index.xhtml"> <img alt="Caelum"
 						class="caelumGroup-footer-logo"
 						src="#{request.contextPath}/resources/imagens/caelum-logo.svg" />
 				</a></li>
-				<li><a href="http://www.alura.com.br/"> <img alt="Alura"
+				<li><a href="#{request.getContextPath()}/index.xhtml"> <img alt="Alura"
 						class="caelumGroup-footer-alura-logo"
 						src="#{request.contextPath}/resources/imagens/alura-logo.svg" />
 				</a></li>
-				<li><a href="http://www.casadocodigo.com.br/"> <img
+				<li><a href="#{request.getContextPath()}/index.xhtml"> <img
 						alt="Casa do Código" class="caelumGroup-footer-cdc-logo"
 						src="#{request.contextPath}/resources/imagens/c-d-c-logo.svg" />
 				</a></li>
-				<li><a href="http://www.guj.com.br/"> <img alt="GUJ"
+				<li><a href="#{request.getContextPath()}/index.xhtml"> <img alt="GUJ"
 						class="caelumGroup-footer-guj-logo"
 						src="#{request.contextPath}/resources/imagens/g-u-j-logo.svg" />
 				</a></li>
 			</ul>
 		</div>
 	</footer>
+	
+	<script>
+		var canalDePromos = new WebSocket("ws://localhost:8080/#{request.contextPath}/canal/promos");
+		canalDePromos.onmessage = function(message) {
+			var novaPromo = JSON.parse(message.data);
+			if(confirm("Que tal aproveitar a promoção relâmpago " 
+					+ novaPromo.titulo)) {
+				document.location.href="#{request.contextPath}/livro-detalhe.xhtml?id=" + novaPromo.livroId;
+			}
+		};
+	</script>
 
-	<script type="text/javascript"
-		src="#{request.contextPath}/resources/js/trackExternalLinks.js"></script>
+	<script type="text/javascript" src="#{request.contextPath}/resources/js/trackExternalLinks.js"></script>
 
 	<iframe src="#{request.contextPath}/resources/ut.html"
 		style="display: none;"></iframe>
