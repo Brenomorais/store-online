@@ -6,92 +6,66 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
-<h:head>
-	<h:outputStylesheet library="css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="css" name="style-admin.css" />
-</h:head>	
+<ui:composition template="/templates/_admin_template.xhtml">
 
-<h:body>
+	<ui:param name="cadastro" value="active" />
 
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">House Code</a>
-		</div>
-		<div id="navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li><h:link value="List Book" outcome="lista" /></li>
-				<li class="active"><a href="#">Register Book</a></li>
-			</ul>
-		</div>
-		<!--/.nav-collapse -->
-	</div>
-	</nav>	
+	<ui:define name="body">
+	
+		<h1>Cadastro de livros</h1>
 
- 	<div class="container">	
- 	
- 	<h1>Register of books</h1>
+		<h:form enctype="multipart/form-data">
+			<div class="form-group">
+				<h:outputLabel value="Título" for="titulo" />
+				<h:inputText value="#{adminLivrosBean.livro.titulo}" required="true"
+					id="titulo" styleClass="form-control" />
+				<h:message for="titulo" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Descrição" for="descricao" />
+				<h:inputTextarea rows="4" cols="20" required="true"
+					value="#{adminLivrosBean.livro.descricao}" id="descricao"
+					styleClass="form-control" />
+				<h:message for="descricao" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Número de Páginas" for="numeroPaginas" />
+				<h:inputText value="#{adminLivrosBean.livro.numeroPaginas}"
+					required="true" id="numeroPaginas" styleClass="form-control" />
+				<h:message for="numeroPaginas" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Preço" for="preco" />
+				<h:inputText value="#{adminLivrosBean.livro.preco}" required="true"
+					id="preco" styleClass="form-control" />
+				<h:message for="preco" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Autores" for="autores" />
+				<h:selectManyListbox value="#{adminLivrosBean.livro.autores}"
+					converter="autorConverter" id="autores" styleClass="form-control">
+					<f:selectItems value="#{adminLivrosBean.autores}" var="autor"
+						itemValue="#{autor}" itemLabel="#{autor.nome}" />
+				</h:selectManyListbox>
+				<h:message for="autores" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Data de Publicação" />
+				<h:inputText value="#{adminLivrosBean.livro.dataPublicacao}"
+					id="dataPublicacao" styleClass="form-control" />
+				<h:message for="dataPublicacao" />
+			</div>
+			<div class="form-group">
+				<h:outputLabel value="Capa do Livro" />
+				<h:inputFile value="#{adminLivrosBean.capaLivro}" id="capaLivro"
+					styleClass="form-control" />
+			</div>
+			<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar}"
+				styleClass="btn btn-primary" />
+		</h:form>
+		
+	</ui:define>
 
-	<h:form enctype="multipart/form-data">			
-		<div class="form-group">
-			<h:outputLabel value="Título" />
-			<h:inputText value="#{adminLivrosBean.livro.titulo}"  class="form-control" 
-				required="true" id="titulo" />
-			<h:message for="titulo"/>
-		</div>
-		
-		<div class="form-group">
-			<h:outputLabel value="Descrição" />
-			<h:inputTextarea rows="4" cols="20" value="#{adminLivrosBean.livro.descricao}" 
-				 class="form-control" required="true" id="descricao"/>
-			<h:message for="descriacao"/>
-		</div>
-		
-		<div class="form-group">
-			<h:outputLabel value="Número de Páginas" />
-			<h:inputText value="#{adminLivrosBean.livro.numeroPaginas}" class="form-control"
-				required="true" id="paginas"/>					
-			<h:message for="paginas"/>
-		</div>
-		
-		<div class="form-group">
-			<h:outputLabel value="Preço" />
-			<h:inputText value="#{adminLivrosBean.livro.preco}" class="form-control"
-				required="true" id="preco" />		
-			<h:message for="preco"/>
-		</div>
-		
-		<div class="form-group">
-			<h:outputLabel value="Data de Publicação" />
-			<h:inputText value="#{adminLivrosBean.livro.dataPublicacao}" class="form-control" 
-				id="dataPublicacao"/>			
-			<h:message for="dataPublicacao"/>
-		</div>
-		
-		<div class="form-group">
-			<h:outputLabel value="Autores"/>
-			<h:selectManyListbox value="#{adminLivrosBean.livro.autores}"
-				converter="autorConverter" id="autores"  class="form-control">
-				<f:selectItems value="#{adminLivrosBean.autores}"
-				    var="autor"
-					itemValue="#{autor}" itemLabel="#{autor.nome}"/>				
-			</h:selectManyListbox>
-			<h:message for="autores"/>
-		</div>
-		
-		<div class="form-group">
-			<h:outputLabel value="Imagem capa do Livro" />
-			<h:inputFile value="#{adminLivrosBean.capaLivro}"  class="form-control"
-				 id="capaLivro"/>
-			<h:message for="capaLivro"/>
-		</div>
-		
-		<div class="form-group">
-			<h:commandButton value="Cadastrar" action="#{adminLivrosBean.salvar()}"  
-				class="btn btn-primary"/>
-		</div>
-		
-	</h:form>
-</div>
-</h:body>
+</ui:composition>
 </html>
+	

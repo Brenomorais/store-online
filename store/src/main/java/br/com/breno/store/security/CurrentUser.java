@@ -38,4 +38,10 @@ public class CurrentUser {
     public SystemUser get() {
         return systemUser;
     }
+    
+    
+    public String logout() {
+    	request.getSession().invalidate();
+    	return "/livros/lista.xhtml?faces-redirect=true";
+    }
 }
