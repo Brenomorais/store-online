@@ -1,5 +1,5 @@
 # Loja Online 
-Projeto de loja online:
+Projeto de loja online com stack Java:
 
 - Java EE
 - CDI
